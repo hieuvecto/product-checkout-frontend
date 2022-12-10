@@ -10,7 +10,6 @@ module.exports = {
     '@storybook/addon-links',
     '@storybook/addon-essentials',
     'storybook-addon-i18n/register.js',
-    'storybook-addon-apollo-client',
     'storybook-addon-next-router',
     {
       name: '@storybook/addon-postcss',

@@ -1,5 +1,4 @@
 import { Dispatch } from 'react';
-import BigNumber from 'bignumber.js';
 
 export type NounsState = {
   currentTokenId?: number;
@@ -11,7 +10,6 @@ export type NounsState = {
   };
   nounAuctionInfo?: {
     nftId: number;
-    amount: BigNumber;
     startTime: Date;
     endTime: Date;
     bidder: string;
