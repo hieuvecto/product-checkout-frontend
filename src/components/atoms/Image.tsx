@@ -2,17 +2,7 @@ import React, { FunctionComponent, ImgHTMLAttributes, Fragment } from 'react';
 import css from 'styled-jsx/css';
 
 const styles = css`
-  .circle {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    object-fit: cover;
-  }
-  .square {
-    object-fit: contain;
-    width: 100%;
-    height: 100%;
-  }
+  /* stylelint-disable */
 `;
 
 type ImageShapeType = 'circle' | 'square';

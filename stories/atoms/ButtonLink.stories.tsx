@@ -11,7 +11,7 @@ export default {
 } as Meta;
 
 const Template: Story<ButtonLinkProps> = (args) => (
-  <ButtonLink {...args}>Button</ButtonLink>
+  <ButtonLink {...args}>Button Link</ButtonLink>
 );
 
 export const Default = Template.bind({});

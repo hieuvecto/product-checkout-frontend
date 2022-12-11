@@ -2,20 +2,31 @@ import React, { FunctionComponent, Fragment, HTMLAttributes } from 'react';
 import css from 'styled-jsx/css';
 
 const styles = css`
-  .size-base {
-    font-size: 1.4rem;
-    line-height: 1.7;
-  }
-  .size-small {
-    font-size: 1.3rem;
-    line-height: 1.7;
-  }
+  /* stylelint-disable */
 `;
 
-export type TextProps = HTMLAttributes<HTMLParagraphElement>;
-const Text: FunctionComponent<TextProps> = ({ children, ...props }) => (
+export type TextSizeType = 'small' | 'medium' | 'large';
+
+// Default class name for h1, h2, h3, h4
+const getClassName = (type: TextSizeType = 'medium') => {
+  switch (type) {
+    case 'small':
+      return 'text-sm font-medium text-gray-900';
+  }
+};
+
+export type TextProps = HTMLAttributes<HTMLParagraphElement> & {
+  type?: TextSizeType;
+};
+const Text: FunctionComponent<TextProps> = ({
+  children,
+  type = 'small',
+  ...props
+}) => (
   <Fragment>
-    <p {...props}>{children}</p>
+    <p className={getClassName(type)} {...props}>
+      {children}
+    </p>
     <style jsx>{styles}</style>
   </Fragment>
 );

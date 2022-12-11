@@ -4,16 +4,49 @@ import React, {
   Fragment,
 } from 'react';
 import css from 'styled-jsx/css';
+import { doAppendClassName } from '../utils';
 
 const styles = css`
   /* stylelint-disable */
 `;
 
-export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement>;
+export type ButtonType =
+  | 'default'
+  | 'primary'
+  | 'secondary'
+  | 'outline'
+  | 'no-border';
 
-const Button: FunctionComponent<ButtonProps> = ({ children, ...props }) => (
+const getClassName = (btnType: ButtonType, appendClassName?: string) => {
+  switch (btnType) {
+    case 'default':
+      return doAppendClassName(
+        'flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700',
+        appendClassName,
+      );
+    case 'no-border':
+      return doAppendClassName(
+        'font-medium text-indigo-600 hover:text-indigo-500',
+        appendClassName,
+      );
+  }
+};
+
+export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
+  btnType?: ButtonType;
+  appendClassName?: string;
+};
+
+const Button: FunctionComponent<ButtonProps> = ({
+  btnType = 'default',
+  appendClassName,
+  children,
+  ...props
+}) => (
   <Fragment>
-    <button {...props}>{children}</button>
+    <button className={getClassName(btnType, appendClassName)} {...props}>
+      {children}
+    </button>
     <style jsx>{styles}</style>
   </Fragment>
 );
