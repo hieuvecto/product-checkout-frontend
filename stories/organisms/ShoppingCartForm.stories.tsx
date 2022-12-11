@@ -15,7 +15,6 @@ const Template: Story<ShoppingCartFormProps> = (args) => (
 
 export const Default = Template.bind({});
 Default.args = {
-  title: 'Shopping Cart',
   checkoutItems: [
     {
       quantity: 3,

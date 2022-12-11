@@ -9,11 +9,10 @@ const styles = css`
 `;
 
 export type ProductListProps = {
-  title: string;
   items: Pick<Item, 'title' | 'description' | 'price' | 'thumbnailUrl'>[];
 };
 
-const ProductList: FunctionComponent<ProductListProps> = ({ title, items }) => {
+const ProductList: FunctionComponent<ProductListProps> = ({ items }) => {
   return (
     <Fragment>
       <div className="bg-white">
@@ -22,7 +21,7 @@ const ProductList: FunctionComponent<ProductListProps> = ({ title, items }) => {
             type="h2"
             className="text-2xl font-bold tracking-tight text-gray-900"
           >
-            {title}
+            Choose your pizza size
           </Title>
           <div className="mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
             {items.map((item, index) => (

@@ -12,7 +12,6 @@ const styles = css`
 `;
 
 export type ShoppingCartFormProps = {
-  title: string;
   checkoutItems: (Pick<CheckoutItem, 'quantity'> & {
     item?: Pick<Item, 'title' | 'description' | 'price' | 'thumbnailUrl'>;
   })[];
@@ -21,7 +20,6 @@ export type ShoppingCartFormProps = {
 };
 
 const ShoppingCartForm: FunctionComponent<ShoppingCartFormProps> = ({
-  title,
   checkoutItems,
   subtotal,
   onSubmit,
@@ -43,7 +41,7 @@ const ShoppingCartForm: FunctionComponent<ShoppingCartFormProps> = ({
                   <div className="flex h-full flex-col overflow-y-scroll bg-white shadow-xl">
                     <div className="flex-1 overflow-y-auto py-6 px-4 sm:px-6">
                       <div className="flex items-start justify-between">
-                        <Title type="h2">{title}</Title>
+                        <Title type="h2">Shopping Cart</Title>
                       </div>
                       <div className="mt-8">
                         <div className="flow-root">
