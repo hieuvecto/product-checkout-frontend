@@ -6,7 +6,8 @@ import i18n from 'i18next';
 import Backend from 'i18next-http-backend';
 import { initReactI18next } from 'react-i18next';
 import { RouterContext } from 'next/dist/shared/lib/router-context';
-
+import { Provider } from 'react-redux';
+import { useStore } from '../src/libs/redux';
 import '../styles/globals.css';
 
 const customViewports = {
@@ -97,3 +98,5 @@ addParameters({
 addDecorator(withI18n);
 
 addDecorator((story) => <Suspense fallback="Loading...">{story()}</Suspense>);
+
+addDecorator((story) => <Provider store={useStore()}>{story()}</Provider>);
