@@ -19,13 +19,21 @@ const Home: FunctionComponent<HomeProps> = ({
 }) => {
   return (
     <Fragment>
-      <ProductList items={items} />
-      <ShoppingCartForm
-        checkoutItems={checkoutItems}
-        subtotal={subtotal}
-        onSubmit={onSubmit}
-      />
-      <style jsx>{styles}</style>
+      <div className="container mx-auto">
+        <div className="grid grid-cols-3 gap-4 p-5">
+          <div className="rounded-lg col-span-2">
+            <ProductList items={items} />
+          </div>
+          <div className="rounded-lg col-span-1">
+            <ShoppingCartForm
+              checkoutItems={checkoutItems}
+              subtotal={subtotal}
+              onSubmit={onSubmit}
+            />
+          </div>
+        </div>
+        <style jsx>{styles}</style>
+      </div>
     </Fragment>
   );
 };
