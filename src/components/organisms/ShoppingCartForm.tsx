@@ -16,7 +16,7 @@ export type ShoppingCartFormProps = {
     item?: Pick<Item, 'title' | 'description' | 'price' | 'thumbnailUrl'>;
   })[];
   subtotal: string;
-  onSubmit: () => void;
+  onSubmit: React.FormEventHandler<HTMLFormElement>;
 };
 
 const ShoppingCartForm: FunctionComponent<ShoppingCartFormProps> = ({
@@ -62,11 +62,7 @@ const ShoppingCartForm: FunctionComponent<ShoppingCartFormProps> = ({
                 Shipping and taxes calculated at checkout.
               </Text>
               <div className="mt-6">
-                <Button
-                  type="submit"
-                  appendClassName="w-full"
-                  onClick={onSubmit}
-                >
+                <Button type="submit" appendClassName="w-full">
                   Checkout
                 </Button>
               </div>

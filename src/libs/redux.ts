@@ -1,14 +1,14 @@
 import { useMemo } from 'react';
 import { createStore, applyMiddleware, combineReducers } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import UsersReducer from '../ducks/users/users.reducers';
-import NounsReducer from '../ducks/nouns/nouns.reducers';
+import CustomersReducer from '../ducks/customers/customers.reducers';
+import CheckousReducer from '../ducks/checkouts/checkouts.reducers';
 
 let store: any;
 
 const reducer = combineReducers({
-  nouns: NounsReducer,
-  users: UsersReducer,
+  customers: CustomersReducer,
+  checkouts: CheckousReducer,
 });
 
 function initStore(preloadedState: any) {

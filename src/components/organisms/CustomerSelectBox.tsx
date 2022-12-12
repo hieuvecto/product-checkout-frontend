@@ -1,4 +1,12 @@
-import React, { FunctionComponent, Fragment, useState, useRef } from 'react';
+import React, {
+  FunctionComponent,
+  Fragment,
+  useState,
+  useRef,
+  useEffect,
+} from 'react';
+import { useDispatch } from 'react-redux';
+import { setSelectedCustomerName } from 'src/ducks/customers/customers.operations';
 import { useOutsideAlerter } from 'src/libs/useOutsideAlerter';
 import { Customer } from 'src/types';
 import css from 'styled-jsx/css';
@@ -25,6 +33,12 @@ const CustomerSelectBox: FunctionComponent<CustomerSelectBoxProps> = ({
   const [isOpen, setIsOpen] = useState(false);
   const [selectedname, setSelectedName] = useState(selectedCustomerName);
   useOutsideAlerter(wrapperRef, () => setIsOpen(false));
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    setSelectedCustomerName(dispatch, selectedname);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedname]);
 
   const selectedCustomer = customers.find(
     (customer) => customer.name === selectedname,

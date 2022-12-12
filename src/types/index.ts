@@ -81,3 +81,11 @@ export type CheckoutItem = {
   item: Item;
   quantity: number;
 };
+
+export type Context = {
+  locale: string;
+  req: { headers: any };
+  res: any;
+  params: any;
+  query: any;
+};

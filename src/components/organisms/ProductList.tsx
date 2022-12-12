@@ -1,4 +1,6 @@
 import React, { FunctionComponent, Fragment } from 'react';
+import { useDispatch } from 'react-redux';
+import { addItemToShoppingCart } from 'src/ducks/checkouts/checkouts.operations';
 import { Item } from 'src/types';
 import css from 'styled-jsx/css';
 import Title from '../atoms/Title';
@@ -13,6 +15,12 @@ export type ProductListProps = {
 };
 
 const ProductList: FunctionComponent<ProductListProps> = ({ items }) => {
+  const dispatch = useDispatch();
+
+  const handleClickListItem = (item: Item) => {
+    addItemToShoppingCart(dispatch, item);
+  };
+
   return (
     <Fragment>
       <div className="bg-white">
@@ -25,7 +33,11 @@ const ProductList: FunctionComponent<ProductListProps> = ({ items }) => {
           </Title>
           <div className="mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8">
             {items.map((item, index) => (
-              <ProductListItem key={index} item={item} />
+              <ProductListItem
+                key={index}
+                item={item}
+                onClick={() => handleClickListItem(item)}
+              />
             ))}
           </div>
         </div>

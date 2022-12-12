@@ -1,4 +1,4 @@
-import React, { FunctionComponent, Fragment } from 'react';
+import React, { FunctionComponent, Fragment, MouseEventHandler } from 'react';
 import { Item } from 'src/types';
 import css from 'styled-jsx/css';
 import Image from '../atoms/Image';
@@ -12,12 +12,16 @@ const styles = css`
 
 export type ProductListItemProps = {
   item: Pick<Item, 'title' | 'description' | 'price' | 'thumbnailUrl'>;
+  onClick?: MouseEventHandler<HTMLDivElement>;
 };
 
-const ProductListItem: FunctionComponent<ProductListItemProps> = ({ item }) => {
+const ProductListItem: FunctionComponent<ProductListItemProps> = ({
+  item,
+  onClick,
+}) => {
   return (
     <Fragment>
-      <div>
+      <div onClick={onClick}>
         <div className="group relative">
           <div className="min-h-80 aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-md bg-gray-200 group-hover:opacity-75 lg:aspect-none lg:h-80">
             <Image
