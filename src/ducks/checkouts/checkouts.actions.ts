@@ -1,3 +1,4 @@
+import BigNumber from 'bignumber.js';
 import { Customer, Item } from 'src/types';
 import { CheckoutsActionType } from './checkouts.types';
 
@@ -35,5 +36,18 @@ export const setCustomersAction = (customers: Customer[]) => {
   return {
     type: CheckoutsActionType.setCustomers,
     payload: customers,
+  };
+};
+
+export const setTotalValuesAction = (
+  subTotalValue: BigNumber,
+  totalValue: BigNumber,
+) => {
+  return {
+    type: CheckoutsActionType.setTotalValues,
+    payload: {
+      subTotalValue,
+      totalValue,
+    },
   };
 };

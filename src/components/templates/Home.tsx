@@ -21,7 +21,8 @@ const Home: FunctionComponent<HomeProps> = ({
   checkoutItems,
   customers,
   selectedCustomerName,
-  subtotal,
+  subTotalValue,
+  totalValue,
   onSubmit,
 }) => {
   return (
@@ -38,7 +39,8 @@ const Home: FunctionComponent<HomeProps> = ({
             />
             <ShoppingCartForm
               checkoutItems={checkoutItems}
-              subtotal={subtotal}
+              subTotalValue={subTotalValue}
+              totalValue={totalValue}
               onSubmit={onSubmit}
             />
           </div>

@@ -47,5 +47,6 @@ Default.args = {
       },
     },
   ],
-  subtotal: '26200',
+  subTotalValue: '26200',
+  totalValue: '26000',
 };

@@ -7,6 +7,10 @@ import { CheckoutsState } from './checkouts.types';
 
 const checkoutItemsSelector = (state: CheckoutsState) => state.checkoutItems;
 
+const subTotalValueSelector = (state: CheckoutsState) => state.subTotalValue;
+
+const totalValueSelector = (state: CheckoutsState) => state.totalValue;
+
 const selectedCustomerNameSelector = (state: CheckoutsState) =>
   state.selectedCustomerName;
 
@@ -22,6 +26,11 @@ export const getCheckoutItems = createSelector(
   (model) => model,
 );
 
+export const getSubTotalValue = createSelector(
+  subTotalValueSelector,
+  (subTotalValue) => subTotalValue,
+);
+
 export const getSelectedCustomerName = createSelector(
   selectedCustomerNameSelector,
   (name) => name,
@@ -30,4 +39,9 @@ export const getSelectedCustomerName = createSelector(
 export const getCustomers = createSelector(
   customersSelector,
   (customers) => customers,
+);
+
+export const getTotalValue = createSelector(
+  totalValueSelector,
+  (totalValue) => totalValue,
 );

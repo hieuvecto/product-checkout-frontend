@@ -1,3 +1,4 @@
+import BigNumber from 'bignumber.js';
 import React, { FunctionComponent, Fragment } from 'react';
 import { useDispatch } from 'react-redux';
 import { removeItemFromShoppingCart } from 'src/ducks/checkouts/checkouts.operations';
@@ -20,13 +21,15 @@ export type ShoppingCartFormProps = {
       'id' | 'title' | 'description' | 'price' | 'thumbnailUrl'
     >;
   })[];
-  subtotal: string;
+  subTotalValue: BigNumber | string;
+  totalValue: BigNumber | string;
   onSubmit: React.FormEventHandler<HTMLFormElement>;
 };
 
 const ShoppingCartForm: FunctionComponent<ShoppingCartFormProps> = ({
   checkoutItems,
-  subtotal,
+  subTotalValue,
+  totalValue,
   onSubmit,
 }) => {
   const dispatch = useDispatch();
@@ -67,13 +70,19 @@ const ShoppingCartForm: FunctionComponent<ShoppingCartFormProps> = ({
             </div>
             <div className="border-t border-gray-200 py-6 px-4 sm:px-6">
               <div className="flex justify-between text-base font-medium text-gray-900">
-                <Text>Subtotal</Text>
+                <Text>Sub Total</Text>
                 <Text>
-                  <UsdPrice price={subtotal} />
+                  <UsdPrice price={subTotalValue} />
+                </Text>
+              </div>
+              <div className="mt-2 flex justify-between text-base font-medium text-gray-900">
+                <Text>Total</Text>
+                <Text>
+                  <UsdPrice price={totalValue} />
                 </Text>
               </div>
               <Text className="mt-0.5 text-sm text-gray-500">
-                Shipping and taxes calculated at checkout.
+                taxes and discounts calculated at checkout.
               </Text>
               <div className="mt-6">
                 <Button type="submit" appendClassName="w-full">

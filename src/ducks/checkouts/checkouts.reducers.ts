@@ -10,7 +10,8 @@ export const initialState: CheckoutsState = {
   checkoutItems: [],
   customers: [],
   selectedCustomerName: 'default',
-  subTotal: new BigNumber(0),
+  subTotalValue: new BigNumber(0),
+  totalValue: new BigNumber(0),
 };
 
 const reducer = (
@@ -65,6 +66,12 @@ const reducer = (
       return {
         ...state,
         customers: action.payload,
+      };
+    case CheckoutsActionType.setTotalValues:
+      return {
+        ...state,
+        subTotalValue: action.payload.subTotalValue,
+        totalValue: action.payload.totalValue,
       };
     default:
       return state;

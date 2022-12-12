@@ -1,7 +1,7 @@
 import BigNumber from 'bignumber.js';
 
 export type Item = {
-  id?: string;
+  id?: number;
   title: string;
   description?: string;
   price: string;
@@ -89,3 +89,13 @@ export type Context = {
   params: any;
   query: any;
 };
+
+export interface ItemIdWithQuantity {
+  itemId: number;
+  quantity: number;
+}
+
+export interface CreateCheckoutInput {
+  customerName: string;
+  itemIdsWithQuantities: ItemIdWithQuantity[];
+}

@@ -4,7 +4,9 @@ import { CheckoutItem, Customer } from 'src/types';
 
 export type CheckoutsState = {
   checkoutItems: CheckoutItem[];
-  subTotal: BigNumber;
+  // For triggering totalValue and discountedValue API call event.
+  subTotalValue: BigNumber;
+  totalValue: BigNumber;
   customers: Customer[];
   selectedCustomerName: string;
 };
@@ -14,6 +16,7 @@ export const CheckoutsActionType = {
   removeItemFromShoppingCart: 'removeItemFromShoppingCart',
   setSelectedCustomerName: 'setSelectedCustomerName',
   setCustomers: 'setCustomers',
+  setTotalValues: 'setTotalValues',
 };
 
 export type CheckoutsActionType =
