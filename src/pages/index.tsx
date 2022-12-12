@@ -1,9 +1,13 @@
 import type { NextPage } from 'next';
-import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Home, { HomeProps } from 'src/components/templates/Home';
 import { API_URL } from 'src/constants';
-import { getCheckoutItems } from 'src/ducks/checkouts/checkouts.selectors';
-import { getSelectedCustomerName } from 'src/ducks/customers/customers.selectors';
+import { setCustomers } from 'src/ducks/checkouts/checkouts.operations';
+import {
+  getCheckoutItems,
+  getSelectedCustomerName,
+} from 'src/ducks/checkouts/checkouts.selectors';
 import { Context, Customer, Item } from 'src/types';
 
 type HomePageProps = Context & {
@@ -15,8 +19,14 @@ const HomePage: NextPage<HomePageProps> = ({
   customers,
   items,
 }: HomePageProps) => {
-  const customersSelector = useSelector((state) => state.customers);
+  const dispatch = useDispatch();
   const checkoutsSelector = useSelector((state) => state.checkouts);
+
+  // CONSIDER: support redux SSR
+  useEffect(() => {
+    setCustomers(dispatch, customers);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const templateProps: HomeProps = {
     customers,
@@ -26,7 +36,7 @@ const HomePage: NextPage<HomePageProps> = ({
     onSubmit: (e) => {
       e.preventDefault();
     },
-    selectedCustomerName: getSelectedCustomerName(customersSelector),
+    selectedCustomerName: getSelectedCustomerName(checkoutsSelector),
   };
   return <Home {...templateProps} />;
 };
@@ -38,6 +48,7 @@ export async function getServerSideProps() {
     fetch(`${API_URL}/items`),
   ]);
   if (!res.every((r) => r.ok)) {
+    // TODO: handle error page.
     throw new Error('Failed to fetch data');
   }
   const data = {

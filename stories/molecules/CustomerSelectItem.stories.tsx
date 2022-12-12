@@ -3,9 +3,6 @@ import React from 'react';
 import CustomerSelectItem, {
   CustomerSelectItemProps,
 } from 'src/components/molecules/CustomerSelectItem';
-import ProductListItem, {
-  ProductListItemProps,
-} from 'src/components/molecules/ProductListItem';
 import { CustomerType } from 'src/types';
 
 export default {

@@ -1,13 +1,11 @@
 import { useMemo } from 'react';
 import { createStore, applyMiddleware, combineReducers } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import CustomersReducer from '../ducks/customers/customers.reducers';
 import CheckousReducer from '../ducks/checkouts/checkouts.reducers';
 
 let store: any;
 
 const reducer = combineReducers({
-  customers: CustomersReducer,
   checkouts: CheckousReducer,
 });
 

@@ -1,4 +1,4 @@
-import { Item } from 'src/types';
+import { Customer, Item } from 'src/types';
 import { CheckoutsActionType } from './checkouts.types';
 
 // common
@@ -12,5 +12,28 @@ export const addItemToShoppingCartAction = (item: Item, quantity = 1) => {
       item,
       quantity,
     },
+  };
+};
+
+export const removeItemFromShoppingCartAction = (item: Item) => {
+  return {
+    type: CheckoutsActionType.removeItemFromShoppingCart,
+    payload: {
+      item,
+    },
+  };
+};
+
+export const setSelectedCustomerNameAction = (name: string) => {
+  return {
+    type: CheckoutsActionType.setSelectedCustomerName,
+    payload: name,
+  };
+};
+
+export const setCustomersAction = (customers: Customer[]) => {
+  return {
+    type: CheckoutsActionType.setCustomers,
+    payload: customers,
   };
 };

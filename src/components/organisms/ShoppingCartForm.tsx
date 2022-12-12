@@ -1,4 +1,6 @@
 import React, { FunctionComponent, Fragment } from 'react';
+import { useDispatch } from 'react-redux';
+import { removeItemFromShoppingCart } from 'src/ducks/checkouts/checkouts.operations';
 import { CheckoutItem, Item } from 'src/types';
 import css from 'styled-jsx/css';
 import Button from '../atoms/Button';
@@ -13,7 +15,10 @@ const styles = css`
 
 export type ShoppingCartFormProps = {
   checkoutItems: (Pick<CheckoutItem, 'quantity'> & {
-    item?: Pick<Item, 'title' | 'description' | 'price' | 'thumbnailUrl'>;
+    item?: Pick<
+      Item,
+      'id' | 'title' | 'description' | 'price' | 'thumbnailUrl'
+    >;
   })[];
   subtotal: string;
   onSubmit: React.FormEventHandler<HTMLFormElement>;
@@ -24,6 +29,12 @@ const ShoppingCartForm: FunctionComponent<ShoppingCartFormProps> = ({
   subtotal,
   onSubmit,
 }) => {
+  const dispatch = useDispatch();
+
+  const handleClickRemove = (item: Item) => {
+    removeItemFromShoppingCart(dispatch, item);
+  };
+
   return (
     <Fragment>
       <form onSubmit={onSubmit}>
@@ -45,6 +56,9 @@ const ShoppingCartForm: FunctionComponent<ShoppingCartFormProps> = ({
                       <ShoppingCartListItem
                         key={index}
                         checkoutItem={checkoutItem}
+                        onClickRemove={() =>
+                          handleClickRemove(checkoutItem.item as Item)
+                        }
                       />
                     ))}
                   </ul>

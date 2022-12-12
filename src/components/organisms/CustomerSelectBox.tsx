@@ -6,7 +6,7 @@ import React, {
   useEffect,
 } from 'react';
 import { useDispatch } from 'react-redux';
-import { setSelectedCustomerName } from 'src/ducks/customers/customers.operations';
+import { setSelectedCustomerName } from 'src/ducks/checkouts/checkouts.operations';
 import { useOutsideAlerter } from 'src/libs/useOutsideAlerter';
 import { Customer } from 'src/types';
 import css from 'styled-jsx/css';

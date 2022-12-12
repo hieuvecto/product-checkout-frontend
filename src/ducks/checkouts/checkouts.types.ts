@@ -1,13 +1,19 @@
+import BigNumber from 'bignumber.js';
 import { Dispatch } from 'react';
-import { CheckoutItem } from 'src/types';
+import { CheckoutItem, Customer } from 'src/types';
 
 export type CheckoutsState = {
   checkoutItems: CheckoutItem[];
-  subTotal?: string;
+  subTotal: BigNumber;
+  customers: Customer[];
+  selectedCustomerName: string;
 };
 
 export const CheckoutsActionType = {
   addItemToShoppingCart: 'addItemToShoppingCart',
+  removeItemFromShoppingCart: 'removeItemFromShoppingCart',
+  setSelectedCustomerName: 'setSelectedCustomerName',
+  setCustomers: 'setCustomers',
 };
 
 export type CheckoutsActionType =

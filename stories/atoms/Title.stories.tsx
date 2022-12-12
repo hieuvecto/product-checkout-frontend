@@ -45,12 +45,3 @@ H4.args = {
   type: 'h4',
   children: 'Title',
 };
-
-export const H5 = Template.bind({});
-H5.args = {
-  type: 'h5',
-  children: 'Title',
-};
-
-export const H6 = Template.bind({});
-H6.args = { type: 'h6', children: 'Title' };

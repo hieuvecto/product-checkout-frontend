@@ -17,10 +17,12 @@ export type ShoppingCartListItemProps = {
   checkoutItem: Pick<CheckoutItem, 'quantity'> & {
     item?: Pick<Item, 'title' | 'description' | 'price' | 'thumbnailUrl'>;
   };
+  onClickRemove?: () => void;
 };
 
 const ShoppingCartListItem: FunctionComponent<ShoppingCartListItemProps> = ({
   checkoutItem,
+  onClickRemove,
 }) => {
   return (
     <Fragment>
@@ -56,7 +58,9 @@ const ShoppingCartListItem: FunctionComponent<ShoppingCartListItemProps> = ({
           <div className="flex flex-1 items-end justify-between text-sm">
             <Text className="text-gray-500">{`Qty ${checkoutItem.quantity}`}</Text>
             <div className="flex">
-              <Button btnType="no-border">Remove</Button>
+              <Button btnType="no-border" onClick={onClickRemove}>
+                Remove
+              </Button>
             </div>
           </div>
         </div>
