@@ -1,6 +1,12 @@
 # Product checkout frontend
 
-## Setting VS Code (Prerequisite)
+## Prerequisites
+
+- nodejs - ^14.x.x
+- yarn
+- Need to run the api server: https://github.com/hieuvecto/product-checkout
+
+## Setting VS Code
 
 Install the following plugins
 
