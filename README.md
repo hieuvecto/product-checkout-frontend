@@ -32,6 +32,8 @@ yarn storybook
 
 ```sh
 yarn dev
+
+# visit http://localhost:3000
 ```
 
 # production
@@ -39,6 +41,8 @@ yarn dev
 ```sh
 yarn build
 yarn start
+
+# visit http://localhost:3000
 ```
 
 // TODO: implement checkout submit.
