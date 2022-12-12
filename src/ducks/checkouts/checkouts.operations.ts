@@ -64,7 +64,6 @@ export const fetchTotalValues = async (
       ),
     );
   } catch (e) {
-    // TODO: handle error
-    throw new Error('Cannot fetch computed values');
+    console.error(e);
   }
 };

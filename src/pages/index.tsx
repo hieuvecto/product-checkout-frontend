@@ -1,3 +1,4 @@
+import axios from 'axios';
 import type { NextPage } from 'next';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -65,22 +66,23 @@ const HomePage: NextPage<HomePageProps> = ({
 };
 
 export async function getServerSideProps() {
-  // Fetch data from external API
-  const res = await Promise.all([
-    fetch(GET_CUSTOMERS_API_URL),
-    fetch(GET_ITEMS_API_URL),
-  ]);
-  if (!res.every((r) => r.ok)) {
-    // TODO: handle error page.
+  try {
+    // Fetch data from external API
+    const res = await Promise.all([
+      axios.get(GET_CUSTOMERS_API_URL),
+      axios.get(GET_ITEMS_API_URL),
+    ]);
+    const data = {
+      customers: await res[0].data,
+      items: await res[1].data,
+    };
+
+    // Pass data to the page via props
+    return { props: { ...data } };
+  } catch (e) {
+    console.error(e);
     throw new Error('Failed to fetch data');
   }
-  const data = {
-    customers: await res[0].json(),
-    items: await res[1].json(),
-  };
-
-  // Pass data to the page via props
-  return { props: { ...data } };
 }
 
 export default HomePage;
