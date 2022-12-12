@@ -1,4 +1,4 @@
-# Generative NFT frontend
+# Product checkout frontend
 
 ## Setting VS Code (Prerequisite)
 
@@ -25,7 +25,7 @@ yarn storybook
 # development
 
 ```sh
-yarn storybook
+yarn dev
 ```
 
 # production
@@ -35,5 +35,4 @@ yarn build
 yarn start
 ```
 
-// TODO: fix web3js issues with webpack 5 storybook.
-// TODO: improve bad codes.
+// TODO: implement checkout submit.

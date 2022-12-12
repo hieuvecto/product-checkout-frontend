@@ -1,13 +1,18 @@
 import BigNumber from 'bignumber.js';
 import React, { FunctionComponent, Fragment } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { removeItemFromShoppingCart } from 'src/ducks/checkouts/checkouts.operations';
+import {
+  getCustomers,
+  getSelectedCustomerName,
+} from 'src/ducks/checkouts/checkouts.selectors';
 import { CheckoutItem, Item } from 'src/types';
 import css from 'styled-jsx/css';
 import Button from '../atoms/Button';
 import Text from '../atoms/Text';
 import Title from '../atoms/Title';
 import UsdPrice from '../atoms/UsdPrice';
+import PricingRuleDetail from '../molecules/PricingRuleDetail';
 import ShoppingCartListItem from '../molecules/ShoppingCartListItem';
 
 const styles = css`
@@ -33,10 +38,17 @@ const ShoppingCartForm: FunctionComponent<ShoppingCartFormProps> = ({
   onSubmit,
 }) => {
   const dispatch = useDispatch();
+  const checkoutsSelector = useSelector((state) => state.checkouts);
+  const customers = getCustomers(checkoutsSelector);
+  const selectedName = getSelectedCustomerName(checkoutsSelector);
 
   const handleClickRemove = (item: Item) => {
     removeItemFromShoppingCart(dispatch, item);
   };
+
+  const selectedCustomer = customers.find(
+    (customer) => customer.name === selectedName,
+  );
 
   return (
     <Fragment>
@@ -81,9 +93,23 @@ const ShoppingCartForm: FunctionComponent<ShoppingCartFormProps> = ({
                   <UsdPrice price={totalValue} />
                 </Text>
               </div>
-              <Text className="mt-0.5 text-sm text-gray-500">
-                taxes and discounts calculated at checkout.
-              </Text>
+              {selectedCustomer &&
+                selectedCustomer.pricingRules &&
+                selectedCustomer.pricingRules.map((pricingRule, index) => {
+                  const foundItem = checkoutItems.find(
+                    (checkoutItem) =>
+                      checkoutItem.item?.id === pricingRule.itemId,
+                  );
+                  return (
+                    foundItem && (
+                      <PricingRuleDetail
+                        key={index}
+                        item={foundItem.item as Item}
+                        pricingRule={pricingRule}
+                      />
+                    )
+                  );
+                })}
               <div className="mt-6">
                 <Button type="submit" appendClassName="w-full">
                   Checkout
